@@ -84,44 +84,17 @@ $(document).ready(function() {
 
             $("div #lista-clips").append(`
               <div id="info">Titulo: <b>${titulo}...</b> | Categoria: <b>${categoria}</b> | Duracion: <b>${duracion}s</b> | Views: <b>${views}</b></div><br>
-              <iframe data-src="https://clips.twitch.tv/embed?clip=${slug};parent=n0itx.github.io/TwitchClips/" src="https://clips.twitch.tv/embed?clip=${slug};parent=n0itx.github.io/TwitchClips/" frameborder="0" scrolling="no" autoplay="true" preload="metadata" allowfullscreen="true"></iframe>
+              <iframe data-src="https://clips.twitch.tv/embed?clip=${slug}&amp;parent=n0itx.github.io" frameborder="0" scrolling="no" autoplay="true" preload="metadata" allowfullscreen="true" src="https://clips.twitch.tv/embed?clip=${slug}&amp;parent=n0itx.github.io"></iframe>
               <br><div id="slug" class="info">${url[0]}</div>
               <br><div class="info">${autor}</div>
               <div class="separador pto"></div>`);
-            // var name = data.channels[i].display_name;
-            // var game = data.channels[i].game;
-            // var logo = data.channels[i].logo;
-            // var follow = data.channels[i].followers;
-            // var commas = new Intl.NumberFormat().format(follow);
-
-            // const sourceElement = document.querySelector('.list-group-item');
-            // const destination = document.querySelector('.list-group');
-
-            // const copy = sourceElement.cloneNode(true);
-            // copy.setAttribute('id', 'main_streamer-' + i);
-
-            // destination.appendChild(copy);
-
-            // $(copy).text(name);
-            // $(copy).popover({
-            //   html: true,
-            //   placement: 'right',
-            //   trigger: 'hover',
-            //   title: '<p class="text-center">' + name + '</p><b class="status">User is: </b>',
-            //   content: '<p class="text-center">' + game + '</p>' + '<p class="text-center">Followers: ' + commas + '</p>' + '<img src="' + logo + '" alt="streamers logo" class="img-thumbnail streamers_logo">'
-            // });
           }
         }
         $("div#slug").click(function() {
-          // alert("Text: " + $(this).text())
           copyToClipboard(this)
-            // $(this).hide();
           $(this).css({
             color: '#70ffa9'
           });
-          // $(this).animate({
-          //     fontSize: '.9em'
-          // });
         });
       }
     });
