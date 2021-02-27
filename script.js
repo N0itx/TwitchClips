@@ -84,7 +84,7 @@ $(document).ready(function() {
 
             $("div #lista-clips").append(`
               <div id="info">Titulo: <b>${titulo}...</b> | Categoria: <b>${categoria}</b> | Duracion: <b>${duracion}s</b> | Views: <b>${views}</b></div><br>
-              <iframe src="https://clips.twitch.tv/embed?clip=${slug};parent=n0itx.github.io" frameborder="0" scrolling="no" autoplay="true" preload="metadata" allowfullscreen="true"></iframe>
+              <iframe data-src="https://clips.twitch.tv/embed?clip=${slug};parent=n0itx.github.io/TwitchClips/" src="https://clips.twitch.tv/embed?clip=${slug};parent=n0itx.github.io/TwitchClips/" frameborder="0" scrolling="no" autoplay="true" preload="metadata" allowfullscreen="true"></iframe>
               <br><div id="slug" class="info">${url[0]}</div>
               <br><div class="info">${autor}</div>
               <div class="separador pto"></div>`);
