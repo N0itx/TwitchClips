@@ -51,14 +51,14 @@ header {
 .desc {
     text-align: center;
     position: sticky;
-    top: 15%;
+    top: 5%;
     height: 300px;
 }
 
 .desc img {
-    width: 100%;
+    /*width: 30%;*/
     height: 50%;
-    border-radius: 5px;
+    border-radius: 50%;
     /*display: block;*/
     object-fit: contain;
 }
@@ -83,7 +83,7 @@ header {
     padding: 5px;
 }
 
-#buscar {
+.buscar {
     background-color: #3c3c3c;
     border: none;
     outline: none;
@@ -97,13 +97,13 @@ header {
     right: 43.1%;*/
 }
 
-#buscar:hover {
+.buscar:hover {
     background-color: #8500ff;
     box-shadow: 0 0 5px 0px #8500ff;
     transform: scale(1.05);
 }
 
-#text {
+#username {
     color: #eee;
     background-color: #3c3c3c;
     border: none;
@@ -113,7 +113,7 @@ header {
     transition: .1s;
 }
 
-#text:hover {
+#username:hover {
     box-shadow: 0 0 5px 0px #8500ff;
 }
 
@@ -152,7 +152,7 @@ select:hover {
     margin: 4% 0%;
 }
 
-#info {
+#info,#api {
     text-align: center;
 }
 
@@ -161,10 +161,35 @@ select:hover {
     font-size: 10px;
 }
 
-
 iframe {
     width: 100%;
     height: 400px;
 }
 
+.desc a {
+    color: #0089ff;
+    text-decoration: none;
+}
+
 /*===== RESPONSIVE =====*/
+
+[class*=fa-]:before {
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: inherit;
+    line-height: inherit;
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin-right: 10px;
+}
+
+[class*=-right]:before {
+    margin-left: 10px;
+}
+
+[class*=none]:before {
+    margin-right: 0px;
+}

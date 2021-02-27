@@ -5,14 +5,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="shit.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
     </head>
     <body>
         <header>
             <div class="titulo">Twitch Clips API</div>
-            <div class="streamer">
+            <form id="submit_search" class="streamer">
                 <div class="nick">Rellena los siguientes datos</div>
-                <input type="text" id="text" name="Username" placeholder="Introduce el nombre..." required>
-                <select id="cantidad" name="clips">
+                <input type="text" id="username" name="Username" placeholder="Introduce el nombre..." required>
+                <select id="cantidad" name="numero de clips">
                     <option value="5">5</option>
                     <option value="10">10</option>
                     <option value="15">15</option>
@@ -25,54 +27,29 @@
                     <option value="all">Todos</option>
                 </select>
                 <!-- <button id="buscar">GO!</button> -->
-                <input id="buscar" type="submit" value="GO!">
-            </div>
+                <button id="user_search" class="buscar" type="button"><i class="fa fa-search none"></i></button>
+            </form>
         </header>
         <br>
-        <div id="info">Streamer: Username | Clips: 20 | Periodo: dia | Categoria: todas | Trending: true</div>
+        <div id="api">Streamer: null | Clips: null | Periodo: null | Trending: null</div>
         <div class="separador"></div>
         <main class="container">
             <div class="row">
-                <div class="column-left">
-                    <div id="info">Titulo: titulo seguro muy feo | Categoria: Fortnite | Duracion: 20s | Views: 100 </div>
+                <div id="lista-clips" class="column-left">
+                    <!-- <div id="info">Titulo: titulo seguro muy feo | Categoria: Fortnite | Duracion: 20s | Views: 100 </div>
                     <div id="slug" class="info">ToughCloudyArmadilloLeeroyJenkins-XbyBzz98Yz6UE7R5</div><br>
                     <iframe data-src="https://clips.twitch.tv/embed?clip=HelpfulAggressivePoxANELE-HUL4bmclCqmT2UTn&amp;parent=n0itx.github.io" frameborder="0" scrolling="no" autoplay="true" preload="metadata" allowfullscreen="true" src="https://clips.twitch.tv/embed?clip=HelpfulAggressivePoxANELE-HUL4bmclCqmT2UTn&amp;parent=n0itx.github.io"></iframe>
                     <div class="separador pto"></div>
-                     <div id="info">Titulo: titulo seguro muy feo | Categoria: Fortnite | Duracion: 20s | Views: 100 </div>
+                    <div id="info">Titulo: titulo seguro muy feo | Categoria: Fortnite | Duracion: 20s | Views: 100 </div>
                     <div id="slug" class="info">XbyBzz98Yz6UE7R5-ToughCloudyArmadilloLeeroyJenkins</div><br>
-                    <iframe data-src="https://clips.twitch.tv/embed?clip=HelpfulAggressivePoxANELE-HUL4bmclCqmT2UTn&amp;parent=n0itx.github.io" frameborder="0" scrolling="no" autoplay="true" preload="metadata" allowfullscreen="true" src="https://clips.twitch.tv/embed?clip=HelpfulAggressivePoxANELE-HUL4bmclCqmT2UTn&amp;parent=n0itx.github.io"></iframe>
+                    <iframe data-src="https://clips.twitch.tv/embed?clip=HelpfulAggressivePoxANELE-HUL4bmclCqmT2UTn&amp;parent=n0itx.github.io" frameborder="0" scrolling="no" autoplay="true" preload="metadata" allowfullscreen="true" src="https://clips.twitch.tv/embed?clip=HelpfulAggressivePoxANELE-HUL4bmclCqmT2UTn&amp;parent=n0itx.github.io"></iframe> -->
                 </div>
                 <div class="column-right">
-                    <div class="desc">
-                        <img src="logo.png" alt="logo noitx">
-                        <p>Hola mi pana aqui deberia de poner una descripción de lo que es esta wea pero no tengo nada en mente asi que estoy rellenando como puedo todo esto pene</p>
+                    <div id="streamer-info" class="desc">
                     </div>
                 </div>
             </div>
         </main>
-        <script>
-        $(document).ready(function() {
-            $("div #slug").click(function() {
-                // alert("Text: " + $(this).text())
-                copyToClipboard(this)
-                    // $(this).hide();
-                $(this).css({
-                    color: '#70ffa9'
-                });
-                // $(this).animate({
-                //     fontSize: '.9em'
-                // });
-            });
-        });
-        </script>
-        <script>
-        function copyToClipboard(element) {
-            var $temp = $("<input>");
-            $("body").append($temp);
-            $temp.val($(element).text()).select();
-            document.execCommand("copy");
-            $temp.remove();
-        }
-        </script>
+        <script type="text/javascript" src="script.js"></script>
     </body>
 </html>
