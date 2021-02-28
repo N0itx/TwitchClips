@@ -19,6 +19,8 @@
                     <option value="10">10</option>
                     <option value="15">15</option>
                     <option value="20">20</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
                 </select>
                 <select id="tiempo" name="time">
                     <option value="day">Hoy</option>
@@ -28,28 +30,38 @@
                 </select>
                 <!-- <button id="buscar">GO!</button> -->
                 <button id="user_search" class="buscar" type="button"><i class="fa fa-search none"></i></button>
+                <br><br>
+                <div>
+                    <span>Intentar Descargar</span>
+                    <label class="switch">
+                        <input id="dl-check" type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
             </form>
         </header>
         <br>
-        <div id="api">Streamer: null | Clips: null | Periodo: null | Trending: null</div>
+        <div id="api">none | none | none | none</div>
         <div class="separador"></div>
-        <main class="container">
+        <main id="contenido" class="container">
             <div class="row">
                 <div id="lista-clips" class="column-left">
-                    <!-- <div id="info">Titulo: titulo seguro muy feo | Categoria: Fortnite | Duracion: 20s | Views: 100 </div>
-                    <div id="slug" class="info">ToughCloudyArmadilloLeeroyJenkins-XbyBzz98Yz6UE7R5</div><br>
-                    <iframe data-src="https://clips.twitch.tv/embed?clip=HelpfulAggressivePoxANELE-HUL4bmclCqmT2UTn&amp;parent=n0itx.github.io" frameborder="0" scrolling="no" autoplay="true" preload="metadata" allowfullscreen="true" src="https://clips.twitch.tv/embed?clip=HelpfulAggressivePoxANELE-HUL4bmclCqmT2UTn&amp;parent=n0itx.github.io"></iframe>
-                    <div class="separador pto"></div>
-                    <div id="info">Titulo: titulo seguro muy feo | Categoria: Fortnite | Duracion: 20s | Views: 100 </div>
-                    <div id="slug" class="info">XbyBzz98Yz6UE7R5-ToughCloudyArmadilloLeeroyJenkins</div><br>
-                    <iframe data-src="https://clips.twitch.tv/embed?clip=HelpfulAggressivePoxANELE-HUL4bmclCqmT2UTn&amp;parent=n0itx.github.io" frameborder="0" scrolling="no" autoplay="true" preload="metadata" allowfullscreen="true" src="https://clips.twitch.tv/embed?clip=HelpfulAggressivePoxANELE-HUL4bmclCqmT2UTn&amp;parent=n0itx.github.io"></iframe> -->
+                    <!-- CLIPS -->
                 </div>
                 <div class="column-right">
                     <div id="streamer-info" class="desc">
+                        <!-- Broadcaster Info -->
                     </div>
                 </div>
             </div>
         </main>
+        <footer>
+            <i class="fa fa-facebook"></i>
+            <i class="fa fa-twitter"></i>
+            <i class="fa fa-heart"></i>
+            <i class="fa fa-paypal"></i>
+            <p>Website Design <b>N0itx</b> | Discord <b>ShiroLB#1110</b></p>
+        </footer>
         <script type="text/javascript" src="script.js"></script>
     </body>
 </html>
