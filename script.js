@@ -27,7 +27,7 @@ $(document).ready(function() {
         'Client-ID': 'njdjdkepu3gygen6rwc9lxwaio4082'
       },
       success: function(data) {
-        
+
         if (data.clips.length == 0) {
           $("div#api").html(`0 Clips detectados en [ ${channel} / ${tiempo} / false / ${cantidad} ]`);
           return
@@ -35,10 +35,10 @@ $(document).ready(function() {
           $("div#api").text(`Streamer: ${channel} | Clips: ${data.clips.length} | Periodo: ${tiempo} | Trending: false`);
         }
 
-        cloneElement(data);
-        
         // console.log(data);
-        console.log(`Clips ${data.clips.length}`);
+        // return
+
+        cloneElement(data);
 
         $("div #streamer-info").append(`
           <img src="${data.clips[0].broadcaster.logo}" alt="broadcaster.logo">
@@ -61,29 +61,8 @@ $(document).ready(function() {
 
             if (document.getElementById("dl-check").checked) {
               let id = data.clips[i].tracking_id;
-              let make = data.clips[i].thumbnails.medium;
-              // let broad_id = data.clips[i].broadcast_id;
-              let video = '';
 
-              //LOS LINKS QUE USA TWITCH SUELEN ACTUALIZARSE Y POR ESO SE OCUPA ADAPTAR EL LINK
-              if (make.includes('vod-')) {
-                //console.log('vod-')
-                let spt = make.split("/");
-                let clip_id = spt[3].split("-");
-                video = `https://${spt[2]}/vod-${clip_id[1]}-offset-${clip_id[3]}.mp4`;
-              } else if (make.includes('offset')) {
-                // console.log('offset')
-                let spt = make.split("/");
-                let clip_id = spt[3].split("-");
-                video = `https://${spt[2]}/${clip_id[0]}-offset-${clip_id[2]}.mp4`;
-              } else if (make.includes('AT-cm')) {
-                // console.log('AT-cm')
-                let spt = make.split("/");
-                let clip_id = spt[3].split("-");
-                video = `https://${spt[2]}/AT-${clip_id[1]}.mp4`;
-              } else {
-                console.log(make)
-              }
+              let video = data.clips[i].thumbnails.medium.replace("-preview-480x272.jpg", ".mp4")
 
               $("div #lista-clips").append(`
                 <div id="info">Titulo: <b>${titulo}...</b> | Categoria: <b>${categoria}</b> | Duracion: <b>${duracion}s</b> | Views: <b>${views}</b></div><br>
@@ -105,28 +84,26 @@ $(document).ready(function() {
             }
           }
         }
-        $("div#slug").click(function() {
-          copyToClipboard(this)
-          $(this).css({
-            color: '#70ffa9'
-          });
-        });
-        $(document).on("click", "#user_search", function() {
-          $(".row").remove();
-          $("#contenido").append(`
-            <div class="row">
-                <div id="lista-clips" class="column-left">
-                    <!-- CLIPS -->
-                </div>
-                <div class="column-right">
-                    <div id="streamer-info" class="desc">
-                        <!-- Broadcaster Info -->
-                    </div>
-                </div>
-            </div>
-          `);
-        });
       }
+    });
+    $("div#slug").click(function() {
+      copyToClipboard(this)
+      $(this).css({
+        color: '#70ffa9'
+      });
+    });
+    $(document).on("click", "#user_search", function() {
+      $(".row").remove();
+      $("#contenido").append(`
+        <div class="row">
+          <div id="lista-clips" class="column-left">
+          </div>
+          <div class="column-right">
+            <div id="streamer-info" class="desc">
+            </div>
+          </div>
+        </div>
+      `);
     });
   });
 });
