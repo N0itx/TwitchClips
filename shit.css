@@ -46,6 +46,47 @@ header {
 }
 
 /*===== CONTEIDO =====*/
+/*border-bottom:6px solid #ccc;*/
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 15px;
+  transition: 0.3s;
+  color: #eee;
+  border-bottom: 5px solid #8500ff8a;
+  width: 50%;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  border-bottom: 5px solid #ff0052bf;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  border-bottom: 5px solid #8500ff;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border-top: none;
+}
+
+.dl-option {
+  text-align: center;
+}
 
 .desc {
   text-align: center;
@@ -66,7 +107,7 @@ header {
   margin: 2%;
 }
 
-.desc a {
+a {
   color: #0089ff;
   text-decoration: none;
 }
@@ -75,7 +116,7 @@ header {
   font-size: 25px;
   text-align: center;
   font-weight: bold;
-  text-shadow: 0px 2px 0px #8500ff
+  text-shadow: 0px 2px 0px #8500ff;
 }
 
 .streamer {
@@ -92,13 +133,9 @@ header {
   border: none;
   outline: none;
   padding: 5px 15px;
-  /* margin: 0px 2px; */
-  /* border-radius: 5px; */
   transition: .1s;
   text-decoration: none;
   color: #eee;
-  /*position: absolute;*/
-  /*right: 43.1%;*/
 }
 
 .buscar:hover {
@@ -107,7 +144,7 @@ header {
   transform: scale(1.1);
 }
 
-#username {
+input {
   color: #eee;
   background-color: #3c3c3c;
   border: none;
@@ -117,7 +154,7 @@ header {
   transition: .1s;
 }
 
-#username:hover {
+input:hover {
   box-shadow: 0 0 5px 0px #8500ff;
 }
 
@@ -148,12 +185,18 @@ select:hover {
   overflow: hidden;
   width: 100%;
   margin: 1% 0%;
-  box-shadow: 0 1px 20px 1px #8500ff;
+  box-shadow: 0 8px 10px 0px #8500ff;
   background-color: #8500ff;
 }
 
 .separador.pto{
   margin: 4% 0%;
+}
+
+.separador.none {
+  box-shadow: none;
+  width: 50%;
+  margin: 15px auto;
 }
 
 #info,#api {
@@ -172,7 +215,7 @@ iframe {
 
 video {
   width: 100%;
-  border-radius: 20px;
+  border-radius: 10px;
   outline: none;
 }
 
@@ -242,7 +285,7 @@ footer b {
   color: #0089ff;
 }
 
-/*===== RESPONSIVE =====*/
+/*===== ICONOS =====*/
 
 [class*=fa-]:before {
   display: inline-block;

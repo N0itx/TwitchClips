@@ -10,7 +10,7 @@ function copyToClipboard(element) {
 
 //===== CALL TWITCH API =====//
 
-// AJAX call for searching twitch.tv channels
+// Primera llamada para sacar el TOP Clips de la API
 $(document).ready(function() {
   $("#submit_search #user_search").click(function() {
     var channel = document.getElementById('username').value;
@@ -84,13 +84,14 @@ $(document).ready(function() {
             }
           }
         }
+        $("div#slug").click(function() {
+          copyToClipboard(this)
+          $(this).css({
+            color: '#70ffa9'
+          });
+          $(this).text(`LINK COPIADO!`)
+        });
       }
-    });
-    $("div#slug").click(function() {
-      copyToClipboard(this)
-      $(this).css({
-        color: '#70ffa9'
-      });
     });
     $(document).on("click", "#user_search", function() {
       $(".row").remove();
@@ -107,3 +108,115 @@ $(document).ready(function() {
     });
   });
 });
+
+
+//Segunda llamada para sacar INFO del Clip con la API
+$(document).ready(function() {
+  $("#submit_search #clip_search").click(function() {
+    var slug = document.getElementById('clip_url').value;
+
+    /*
+    https://clips.twitch.tv/PeppyStylishSaladPanicBasket--mRZFM54EU9cdzTX
+    https://www.twitch.tv/soypan/clip/PeppyStylishSaladPanicBasket--mRZFM54EU9cdzTX?filter=clips&range=24hr&sort=time
+    */
+    if (slug.includes('twitch.tv')) {
+      slug = slug.split('/')[slug.includes('clips.') ? 3 : 5];
+      if (slug.includes('?')) { slug = slug.split('?')[0] }
+    }
+
+    var userURL = `https://api.twitch.tv/kraken/clips/${slug}`;
+    $.ajax({
+      url: userURL,
+      type: 'GET',
+      dataType: 'json',
+      contentType: 'application/json',
+      headers: {
+        'Accept': 'application/vnd.twitchtv.v5+json',
+        'Client-ID': 'njdjdkepu3gygen6rwc9lxwaio4082'
+      },
+      success: function(data) {
+
+        console.log(data);
+        
+        $("div#api").html(`Streamer: ${data.broadcaster.display_name} | Autor: ${data.curator.display_name} | Fecha: ${data.created_at.split('T')[0]} | VOD: <a href="${data.vod.url}">${data.vod.url}</a>`)
+
+        $("div #streamer-info").append(`
+          <img src="${data.broadcaster.logo}" alt="broadcaster.logo">
+          <h2>${data.broadcaster.display_name}</h2>
+          <p>UserID: ${data.broadcaster.id}</p>
+          <a href="${data.broadcaster.channel_url}">${data.broadcaster.channel_url}</a>
+        `);
+
+        let titulo = data.title.substring(0, 20);
+        let categoria = data.game;
+        let duracion = data.duration;
+        let views = data.views;
+        let slug = data.slug;
+        let url = data.url.split("?");
+        let autor = data.curator.display_name;
+
+        if (document.getElementById("dl-check").checked) {
+
+          let id = data.tracking_id;
+          let video = data.thumbnails.medium.replace("-preview-480x272.jpg", ".mp4")
+
+          $("div #lista-clips").append(`
+            <div id="info">Titulo: <b>${titulo}...</b> | Categoria: <b>${categoria}</b> | Duracion: <b>${duracion}s</b> | Views: <b>${views}</b></div><br>
+            <video width="720" height="440" controls>
+                <source src="${video}" type="video/mp4">
+            </video>
+            <br><div id="slug" class="info">${url[0]}</div>
+          `);
+        } else {
+          $("div #lista-clips").append(`
+            <div id="info">Titulo: <b>${titulo}...</b> | Categoria: <b>${categoria}</b> | Duracion: <b>${duracion}s</b> | Views: <b>${views}</b></div><br>
+            <iframe data-src="https://clips.twitch.tv/embed?clip=${slug}&amp;parent=n0itx.github.io" frameborder="0" scrolling="no" autoplay="true" preload="metadata" allowfullscreen="true" src="https://clips.twitch.tv/embed?clip=${slug}&amp;parent=n0itx.github.io"></iframe>
+            <br><div id="slug" class="info">${url[0]}</div>
+          `);
+        }
+
+        //===== COPY TO CLIPBOARD =====//
+        $("div#slug").click(function() {
+          copyToClipboard(this)
+          $(this).css({
+            color: '#70ffa9'
+          });
+          $(this).text(`LINK COPIADO!`)
+        });
+      },
+      error: function(data) {
+        $("div#api").text(`No se detecto ningun clip, asegurate que el link que proporcionaste sea el correcto`);
+      }
+    });
+    $(document).on("click", "#clip_search", function() {
+      $(".row").remove();
+      $("#contenido").append(`
+        <div class="row">
+          <div id="lista-clips" class="column-left">
+          </div>
+          <div class="column-right">
+            <div id="streamer-info" class="desc">
+            </div>
+          </div>
+        </div>
+      `);
+    });
+  });
+});
+
+//Funcion de las Tabs
+function optionClips(evt, s_option) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(s_option).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
