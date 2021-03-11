@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <title>Twitch TMIJS Test</title>
+        <title>Twitch Clips API Test</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="shit.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
@@ -9,27 +9,58 @@
     </head>
     <body>
         <header>
-            <div class="titulo">Twitch N0itx</div>
-            <div class="connection">OFFLINE</div>
-            <button class="con-des fa fa-power-off none" style="color: lime" onclick="conectar()"></button>
-            <button class="con-des fa fa-power-off none" style="color: red" onclick="desconectar()"></button>
+            <div class="titulo">Twitch Clips API</div>
+            <div id="Buscar_Streamer" class="tabcontent">
+                <form id="submit_search" class="streamer">
+                    <div class="nick">Busca clips por Streamer/cantidad/periodo</div>
+                    <input type="text" id="username" name="Username" placeholder="Introduce el nombre..." required>
+                    <select id="cantidad" name="numero de clips">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                    <select id="tiempo" name="time">
+                        <option value="day">Hoy</option>
+                        <option value="week">Semana</option>
+                        <option value="month">Mes</option>
+                        <option value="all">Todos</option>
+                    </select>
+                    <button id="user_search" class="buscar" type="button"><i class="fa fa-search none"></i></button>
+                </form>
+            </div>
+            <div id="Buscar_URL" class="tabcontent">
+                <form id="submit_search" class="streamer">
+                    <div class="nick">Rellena lo siguiente</div>
+                    <input type="text" id="clip_url" name="Clip_Url" placeholder="Clip Link/Slug..." required>
+                    <button id="clip_search" class="buscar" type="button"><i class="fa fa-search none"></i></button>
+                </form>
+            </div>
+            <div class="dl-option">
+                <span>Intentar Descargar</span>
+                <label class="switch">
+                    <input id="dl-check" type="checkbox" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="tab">
+                <button class="tablinks" onclick="optionClips(event, 'Buscar_Streamer')" id="defaultOpen">Buscar por Streamer</button>
+                <button class="tablinks" onclick="optionClips(event, 'Buscar_URL')">Buscar por URL</button>
+            </div>
         </header>
-        <main class="container">
+        <br>
+        <div id="api">none | none | none | none</div>
+        <div class="separador none"></div>
+        <main id="contenido" class="container">
             <div class="row">
-                <!-- <div class="cargando">
-                    <i class="fa fa-cog fa-spin fa-5x fa-fw"></i>
-                </div> -->
-                <div class="column-left">
-                    <div id="chat">
-                        <!-- MENSAJES DEL CHAT -->
-                    </div>
-                </div>
-                <div class="column-center">
-                    
+                <div id="lista-clips" class="column-left">
+                    <!-- CLIPS -->
                 </div>
                 <div class="column-right">
-                    <div id="JL-channel" class="row">
-                        <!-- JOINED/LEFT CHANNELS CARD -->
+                    <div id="streamer-info" class="desc">
+                        <!-- Broadcaster Info -->
                     </div>
                 </div>
             </div>
@@ -41,7 +72,6 @@
             <i class="fa fa-paypal"></i>
             <p>Website Design <b>N0itx</b> | Discord <b>ShiroLB#1110</b></p>
         </footer>
-        <script src="tmi.min.js"></script>
         <script type="text/javascript" src="script.js"></script>
     </body>
 </html>
