@@ -8,12 +8,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: #222;
-  padding: 1%;
   color: #eee;
 }
 
 header {
   overflow: hidden;
+  padding-top: 10px;
 }
 
 .container {
@@ -48,12 +48,10 @@ header {
 /*===== CONTEIDO =====*/
 /*border-bottom:6px solid #ccc;*/
 
-/* Style the tab */
 .tab {
   overflow: hidden;
 }
 
-/* Style the buttons inside the tab */
 .tab button {
   background-color: inherit;
   float: left;
@@ -67,20 +65,16 @@ header {
   width: 50%;
 }
 
-/* Change background color of buttons on hover */
 .tab button:hover {
   border-bottom: 5px solid #ff0052bf;
 }
 
-/* Create an active/current tablink class */
 .tab button.active {
   border-bottom: 5px solid #8500ff;
 }
 
-/* Style the tab content */
 .tabcontent {
   display: none;
-  padding: 6px 12px;
   border-top: none;
 }
 
