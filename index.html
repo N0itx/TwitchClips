@@ -12,7 +12,7 @@
             <div class="titulo">Twitch Clips API</div>
             <div id="Buscar_Streamer" class="tabcontent">
                 <form id="submit_search" class="streamer">
-                    <div class="nick">Busca clips por Streamer/cantidad/periodo</div>
+                    <div class="nick">Busca clips por Streamer / Cantidad / Periodo de tiempo</div>
                     <input type="text" id="username" name="Username" placeholder="Introduce el nombre..." required>
                     <select id="cantidad" name="numero de clips">
                         <option value="5">5</option>
@@ -21,6 +21,7 @@
                         <option value="20">20</option>
                         <option value="50">50</option>
                         <option value="100">100</option>
+                        <option value="500">500</option>
                     </select>
                     <select id="tiempo" name="time">
                         <option value="day">Hoy</option>
@@ -33,13 +34,13 @@
             </div>
             <div id="Buscar_URL" class="tabcontent">
                 <form id="submit_search" class="streamer">
-                    <div class="nick">Rellena lo siguiente</div>
+                    <div class="nick">Busca clip por Link / URL / Slug</div>
                     <input type="text" id="clip_url" name="Clip_Url" placeholder="Clip Link/Slug..." required>
                     <button id="clip_search" class="buscar" type="button"><i class="fa fa-search none"></i></button>
                 </form>
             </div>
             <div class="dl-option">
-                <span>Intentar Descargar</span>
+                <span>Opción para Descarga</span>
                 <label class="switch">
                     <input id="dl-check" type="checkbox" checked>
                     <span class="slider"></span>

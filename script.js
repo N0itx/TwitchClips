@@ -8,14 +8,17 @@ function copyToClipboard(element) {
   $temp.remove();
 }
 
-//===== CALL TWITCH API =====//
-
 //===== TOP CLIPS BY CHANNEL =====//
 $(document).ready(function() {
   $("#submit_search #user_search").click(function() {
     var channel = document.getElementById('username').value;
     var tiempo = document.getElementById('tiempo').value;
     var cantidad = document.getElementById('cantidad').value;
+
+    if (channel.length == 0) {
+      $("div#api").html(`Asegurate de poner el nombre del Streaer del cual quieres ver Clips`);
+    }
+
     var userURL = `https://api.twitch.tv/kraken/clips/top?channel=${channel.toLowerCase()}&period=${tiempo}&trending=false&limit=${cantidad}`;
     $.ajax({
       url: userURL,
@@ -45,7 +48,7 @@ $(document).ready(function() {
           <h2>${data.clips[0].broadcaster.display_name}</h2>
           <p>UserID: ${data.clips[0].broadcaster.id}</p>
           <a href="${data.clips[0].broadcaster.channel_url}">${data.clips[0].broadcaster.channel_url}</a>
-          `);
+        `);
 
         function cloneElement(data) {
           for (var i = 0; i < data.clips.length; i++) {
@@ -57,20 +60,24 @@ $(document).ready(function() {
             let slug = data.clips[i].slug;
             let url = data.clips[i].url.split("?");
             let autor = data.clips[i].curator.display_name;
+            let fecha = data.clips[i].created_at.substring(0, 10).split('-');
 
             if (document.getElementById("dl-check").checked) {
               let id = data.clips[i].tracking_id;
-
+              
               let video = data.clips[i].thumbnails.medium.replace("-preview-480x272.jpg", ".mp4")
 
               $("div #lista-clips").append(`
+                <div class="clip">
                 <div id="info">Titulo: <b>${titulo}...</b> | Categoria: <b>${categoria}</b> | Duracion: <b>${duracion}s</b> | Views: <b>${views}</b></div><br>
                 <video width="720" height="440" controls>
                     <source src="${video}" type="video/mp4">
                 </video>
                 <br><div id="slug" class="info">${url[0]}</div>
-                <br><div class="info">${autor}</div>
+                <a href='${video}' download="${titulo} - ${fecha[0]} - ${autor}" class="dl-clip">Descargar</a>
+                <div class="info">Autor: ${autor} | Fecha: ${fecha[2]}/${fecha[1]}/${fecha[0]}</div><br>
                 <div class="separador pto"></div>
+                </div>
               `);
             } else {
               $("div #lista-clips").append(`
